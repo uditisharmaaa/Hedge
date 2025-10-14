@@ -1,5 +1,5 @@
 # Environment variables (CRITICAL - contains secrets!)
-venv
+venv/
 .env
 .env.local
 .env.development.local
