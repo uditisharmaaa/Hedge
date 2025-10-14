@@ -1,4 +1,5 @@
 # Environment variables (CRITICAL - contains secrets!)
+venv
 .env
 .env.local
 .env.development.local
