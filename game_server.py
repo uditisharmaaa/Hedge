@@ -6,6 +6,7 @@ from enum import Enum
 import random
 import string
 
+
 app = FastAPI(title="Hedge Game Server")
 
 # Enums
@@ -244,6 +245,10 @@ async def load_test_data():
     print(f"API Docs: http://localhost:8000/docs")
     print(f"Health Check: http://localhost:8000/health")
     print("="*60 + "\n")
+
+
+from trading_api import trading_router
+app.include_router(trading_router)
 
 if __name__ == "__main__":
     import uvicorn
