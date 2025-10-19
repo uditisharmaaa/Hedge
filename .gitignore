@@ -85,3 +85,5 @@ temp/
 # Backup files
 *.bak
 *.backup
+
+__pycache__/

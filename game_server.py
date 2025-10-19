@@ -247,8 +247,8 @@ async def load_test_data():
     print("="*60 + "\n")
 
 
-from trading_api import trading_router
-app.include_router(trading_router)
+# from trading_api import trading_router
+# app.include_router(trading_router)
 
 if __name__ == "__main__":
     import uvicorn
