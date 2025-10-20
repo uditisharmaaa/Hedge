@@ -21,5 +21,3 @@ This FastAPI connects to our Supabase database, so that it can support the Hedge
 ## Key Business Rule
 Before a player joining or trading, the system will checks game status and data validity. After that, all trades are verified for sufficient balance, existing holdings, and current market prices, which can help to prevent short selling or overspending. Once validated these rules, each trade cycle willupdates the player’s cash and portfolio instantly to keep all records consistent.
 
-## Limitation of Auto generate API
-
