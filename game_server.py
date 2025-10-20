@@ -5,8 +5,6 @@ from datetime import datetime
 from enum import Enum
 import random
 import string
-from db import supabase
-
 
 
 app = FastAPI(title="Hedge Game Server")

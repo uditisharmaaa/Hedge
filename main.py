@@ -4,12 +4,6 @@ from trading_api import trading_router  # get trading router
 # connect both
 app.include_router(trading_router)
 
-if __name__ == "__main__":              # match the week 6 intructions
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
-
-# try to connect to supabase
-
 import os
 from fastapi import FastAPI, HTTPException
 from supabase import create_client
@@ -18,26 +12,20 @@ from dotenv import load_dotenv
 # 1) load environment variables & connect to Supabase
 load_dotenv()
 SUPABASE_URL = os.getenv("SUPABASE_URL")
-SUPABASE_KEY = os.getenv("SUPABASE_ANON_KEY")
+SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
 
-if not SUPABASE_URL or not SUPABASE_KEY:
+if not SUPABASE_URL or not SUPABASE_ANON_KEY:
     print("Miss Supabase credentials. Check your .env file.")
     supabase = None
 else:
     try:
-        supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
+        supabase = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
         print("Connected to Supabase successfully.")
     except Exception as e:
         print("Failed to connect to Supabase:", e)
         supabase = None
 
-# 2) Import and combine backend modules
-from game_server import app           # main FastAPI app (profiles, games, matches)
-from trading_api import trading_router  # trading endpoints
-# Attach trading endpoints to main app
-app.include_router(trading_router)
-
-# 3) Database health check endpoint
+# 2) Database health check endpoint
 @app.get("/db/health")
 async def check_db():
     if supabase is None:
@@ -48,7 +36,7 @@ async def check_db():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database error: {e}")
 
-# 4) Run the app
+# 3) Run the app
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
